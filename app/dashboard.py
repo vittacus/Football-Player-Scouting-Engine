@@ -26,163 +26,280 @@ st.set_page_config(page_title="Player Scouting Engine", layout="wide")
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;700&display=swap');
 
     html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
-        background-color: #E9E4E0 !important;
+        background-color: #F1ECE4 !important;
         font-family: 'IBM Plex Sans', sans-serif;
     }
-    .block-container { background-color: #E9E4E0; padding: 40px 48px !important; max-width: 1100px; }
+    .block-container { background-color: #F1ECE4; padding: 44px 52px !important; max-width: 1120px; }
 
-    h1, h2, h3, p, span, label, div { color: #172A39; }
+    h1, h2, h3, p, span, label, div { color: #152238; }
+    p { line-height: 1.6; }
 
     .title-row { display: flex; align-items: center; gap: 16px; margin-bottom: 0; }
     h1 {
         font-family: 'Oswald', sans-serif;
-        font-weight: 700;
-        letter-spacing: 0.02em;
+        font-weight: 600;
+        font-size: 40px;
+        letter-spacing: 0.01em;
         margin-bottom: 0 !important;
     }
     .pl-badge {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
-        letter-spacing: 0.08em;
-        color: #FC563C;
-        border: 1px solid #FC563C;
-        padding: 4px 10px;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        color: #E2583D;
+        border: 1.5px solid #E2583D;
+        padding: 5px 12px;
+        border-radius: 6px;
         text-transform: uppercase;
     }
     .title-underline {
         height: 3px;
-        background-color: #FC563C;
-        margin: 12px 0 20px 0;
+        background-color: #E2583D;
+        margin: 16px 0 24px 0;
+        width: 100%;
     }
 
-    /* Uppercase, tracked, monospace micro-labels on every form field */
+    .how-it-works {
+        display: flex;
+        gap: 16px;
+        margin: 0 0 24px 0;
+    }
+    .how-step {
+        flex: 1;
+        background-color: #FFFFFF;
+        padding: 20px 22px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(21,34,56,0.08);
+    }
+    .how-step-num {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        color: #E2583D;
+    }
+    .how-step-text {
+        font-size: 13.5px;
+        color: #152238;
+        margin-top: 6px;
+        line-height: 1.5;
+    }
+
     [data-testid="stWidgetLabel"] p {
         font-family: 'JetBrains Mono', monospace !important;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 12px !important;
-        color: #6E7575 !important;
+        letter-spacing: 0.04em;
+        font-size: 11px !important;
+        color: #6B7280 !important;
+        margin-bottom: 6px !important;
     }
 
     .scoreboard {
-        background-color: #172A39;
-        border-radius: 0;
-        padding: 18px 32px 18px 24px;
-        margin: 20px 0 32px 0;
+        background-color: #152238;
+        border-radius: 10px;
+        padding: 22px 36px 22px 28px;
+        margin: 24px 0 36px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        box-shadow: 0 4px 16px rgba(21,34,56,0.15);
     }
     .scoreboard-club {
         font-family: 'Oswald', sans-serif;
-        font-weight: 700;
-        font-size: 22px;
-        letter-spacing: 0.02em;
+        font-weight: 600;
+        font-size: 23px;
+        letter-spacing: 0.01em;
         text-transform: uppercase;
-        color: #E9E4E0 !important;
+        color: #F1ECE4 !important;
     }
-    .scoreboard-sub { font-size: 13px; color: #B8BEC2 !important; margin-top: 2px; }
+    .scoreboard-sub { font-size: 13px; color: #9BA6BD !important; margin-top: 4px; }
     .scoreboard-value {
-        font-family: 'Oswald', sans-serif;
+        font-family: 'Space Grotesk', sans-serif;
         font-weight: 700;
-        font-size: 30px;
-        color: #FC563C !important;
+        font-size: 52px;
+        color: #E2583D !important;
         text-align: right;
         line-height: 1;
     }
     .scoreboard-value-label {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 11px;
-        letter-spacing: 0.06em;
-        color: #B8BEC2 !important;
+        font-size: 10px;
+        letter-spacing: 0.05em;
+        color: #9BA6BD !important;
         text-align: right;
     }
 
-    /* Cards: white background, top accent border (not left), matching the mockup */
+    .side-label {
+        display: inline-block;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+    }
+    .side-label.reference { background-color: #152238; color: #F1ECE4; }
+    .side-label.target { background-color: #E2583D; color: #F1ECE4; }
+
+    .vs-badge {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        color: #6B7280;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
     .stat-panel {
         background-color: #FFFFFF;
-        border-top: 3px solid #172A39;
-        padding: 20px 24px;
+        border-top: 3px solid #152238;
+        border-radius: 10px;
+        padding: 24px 28px;
+        box-shadow: 0 2px 10px rgba(21,34,56,0.08);
     }
-    .stat-panel.target { border-top: 3px solid #FC563C; }
-    .stat-panel-title { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 22px; color: #172A39; }
-    .stat-panel.target .stat-panel-title { color: #FC563C !important; }
+    .stat-panel.target { border-top: 3px solid #E2583D; }
+    .stat-panel-title { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 23px; color: #152238; }
+    .stat-panel.target .stat-panel-title { color: #E2583D !important; }
     .stat-panel-sub {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
-        letter-spacing: 0.04em;
-        color: #6E7575;
-        margin-bottom: 14px;
+        font-size: 11px;
+        letter-spacing: 0.03em;
+        color: #6B7280;
+        margin-bottom: 16px;
     }
     .stat-row {
-        display: flex; justify-content: space-between; padding: 8px 0;
-        border-bottom: 1px solid rgba(23,42,57,0.1); font-size: 14px;
+        display: flex; justify-content: space-between; align-items: center; padding: 11px 0;
+        border-bottom: 1px solid rgba(21,34,56,0.08); font-size: 14px;
     }
     .stat-row:last-child { border-bottom: none; }
-    .stat-label { color: #6E7575; }
-    .stat-value { font-family: 'Oswald', sans-serif; color: #172A39; }
+    .stat-label { color: #6B7280; }
+    .stat-value-wrap { display: flex; align-items: center; gap: 10px; }
+    .stat-value { font-family: 'Oswald', sans-serif; font-weight: 500; color: #152238; }
 
-    .similarity-line {
-        text-align: center; font-size: 13px; color: #6E7575; margin: 20px 0;
-        padding-top: 16px; border-top: 1px solid rgba(23,42,57,0.15);
+    .edge-badge {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 3px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
     }
-    .similarity-line strong { color: #FC563C !important; font-family: 'Oswald', sans-serif; }
+    .edge-badge.reference { background-color: rgba(21,34,56,0.1); color: #152238; }
+    .edge-badge.target { background-color: rgba(226,88,61,0.12); color: #E2583D; }
 
-    /* Chart wrapper: white card behind the plot area, like the mockup */
-    .chart-card { background-color: #FFFFFF; padding: 20px; margin-top: 8px; }
+    .value-callout {
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(21,34,56,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    .value-callout-label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #6B7280;
+    }
+    .value-callout-number {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: 34px;
+        line-height: 1;
+    }
+    .stat-panel.reference .value-callout-number { color: #152238; }
+    .stat-panel.target .value-callout-number { color: #E2583D; }
+
+    .stat-glossary {
+        font-size: 11px;
+        color: #9BA6BD;
+        margin-top: 14px;
+        line-height: 1.5;
+        font-style: italic;
+    }
+
+    .summary-card {
+        background-color: #FFFFFF;
+        border-left: 5px solid #E2583D;
+        border-radius: 10px;
+        padding: 22px 26px;
+        margin: 24px 0;
+        box-shadow: 0 2px 10px rgba(21,34,56,0.08);
+    }
+    .summary-verdict {
+        font-family: 'Oswald', sans-serif;
+        font-size: 19px;
+        font-weight: 500;
+    }
+    .summary-verdict .delta-up { color: #1E7A4C; }
+    .summary-verdict .delta-number { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+    .summary-sub {
+        font-size: 12.5px;
+        color: #6B7280;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(21,34,56,0.08);
+    }
+    .summary-sub strong { color: #E2583D; font-family: 'Space Grotesk', sans-serif; }
+
+    .legend-row {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        margin: 16px 0 4px 0;
+        font-size: 12px;
+        color: #6B7280;
+        font-family: 'JetBrains Mono', monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+    .legend-item { display: flex; align-items: center; gap: 8px; }
 
     [data-testid="stExpander"] {
         background-color: #FFFFFF !important;
-        border: 1px solid rgba(23,42,57,0.2) !important;
-        border-radius: 0 !important;
+        border-radius: 10px !important;
+        border: none !important;
+        box-shadow: 0 2px 10px rgba(21,34,56,0.06);
     }
     [data-testid="stExpander"] summary {
         background-color: #FFFFFF !important;
-        color: #172A39 !important;
+        color: #152238 !important;
         font-family: 'JetBrains Mono', monospace !important;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
-        font-size: 13px !important;
+        letter-spacing: 0.04em;
+        font-size: 12px !important;
     }
-    [data-testid="stExpander"] p { color: #172A39 !important; font-family: 'IBM Plex Sans', sans-serif !important; text-transform: none; letter-spacing: normal; }
+    [data-testid="stExpander"] p {
+        color: #152238 !important;
+        font-family: 'IBM Plex Sans', sans-serif !important;
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: 14px;
+    }
 
     div[data-baseweb="select"] > div {
         background-color: #FFFFFF !important;
-        border: 1px solid #172A39 !important;
-        border-radius: 0 !important;
+        border: 1px solid rgba(21,34,56,0.25) !important;
+        border-radius: 8px !important;
     }
-    div[data-baseweb="select"] > div * {
-        color: #172A39 !important;
-    }
+    div[data-baseweb="select"] > div * { color: #152238 !important; }
 
-    [role="listbox"] { background-color: #FFFFFF !important; }
-    [role="option"] {
-        background-color: #FFFFFF !important;
-        color: #172A39 !important;
-    }
-    [role="option"]:hover { background-color: #E9E4E0 !important; }
-    [role="option"] * { color: #172A39 !important; }
+    [role="listbox"] { background-color: #FFFFFF !important; border-radius: 8px !important; }
+    [role="option"] { background-color: #FFFFFF !important; color: #152238 !important; }
+    [role="option"]:hover { background-color: #F1ECE4 !important; }
+    [role="option"] * { color: #152238 !important; }
 
-    /* Radio group styled as a bordered segmented control */
-    [data-testid="stRadio"] > div {
-        border: 1px solid #172A39;
-        gap: 0 !important;
-        display: inline-flex;
-    }
-    [data-testid="stRadio"] label {
-        border-radius: 0 !important;
-        padding: 8px 16px !important;
-        margin: 0 !important;
-        font-family: 'JetBrains Mono', monospace !important;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        font-size: 12px !important;
-    }
-
-    button, .stButton > button { border-radius: 0 !important; }
+    button, .stButton > button { border-radius: 8px !important; }
     </style>
     """,
     unsafe_allow_html=True,
@@ -215,10 +332,32 @@ def get_keeper_valuation_data():
     return compute_keeper_value_score(df)
 
 
-def render_stat_panel(title, subtitle, stats, variant):
+ATTACKER_GLOSSARY = (
+    "Goals per 90 and Assists per 90 = goals or assists per 90 minutes played "
+    "(a full match), so players with different amounts of playing time can "
+    "be compared fairly. Goal Contributions per 90 = goals + assists per 90."
+)
+KEEPER_GLOSSARY = (
+    "Save % = shots saved out of shots faced. Clean Sheet % = matches with "
+    "zero goals conceded. Goals Against per 90 = goals conceded per 90 minutes "
+    "(lower is better)."
+)
+
+HIGHER_IS_BETTER = {
+    "goals_per90": True,
+    "assists_per90": True,
+    "goal_contributions_per90": True,
+    "save_pct": True,
+    "clean_sheet_pct": True,
+    "goals_against_per90": False,
+}
+
+
+def render_stat_panel(title, subtitle, stats, value_score, variant, glossary):
     rows_html = "".join(
-        f'<div class="stat-row"><span class="stat-label">{label}</span><span class="stat-value">{value}</span></div>'
-        for label, value in stats
+        f'<div class="stat-row"><span class="stat-label">{label}</span>'
+        f'<span class="stat-value-wrap">{badge}<span class="stat-value">{value}</span></span></div>'
+        for label, value, badge in stats
     )
     st.markdown(
         f"""
@@ -226,6 +365,11 @@ def render_stat_panel(title, subtitle, stats, variant):
             <div class="stat-panel-title">{title}</div>
             <div class="stat-panel-sub">{subtitle}</div>
             {rows_html}
+            <div class="value-callout">
+                <span class="value-callout-label">Value Score</span>
+                <span class="value-callout-number">{value_score}</span>
+            </div>
+            <div class="stat-glossary">{glossary}</div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -264,7 +408,7 @@ st.markdown(
 )
 st.caption("Find attacking and goalkeeping signings that fit your club's needs")
 
-with st.expander("About this project"):
+with st.expander("About this project (methodology & limitations)"):
     st.markdown(
         """
         This tool compares players across the Premier League using two models:
@@ -291,27 +435,49 @@ with st.expander("About this project"):
         """
     )
 
+st.markdown(
+    """
+    <div class="how-it-works">
+        <div class="how-step">
+            <div class="how-step-num">1</div>
+            <div class="how-step-text">Pick your club and one player currently on your roster you want to find an upgrade or replacement for.</div>
+        </div>
+        <div class="how-step">
+            <div class="how-step-num">2</div>
+            <div class="how-step-text">We find players at other clubs with a statistically similar style of play to your player.</div>
+        </div>
+        <div class="how-step">
+            <div class="how-step-num">3</div>
+            <div class="how-step-text">Each option gets a "Value Score" so you can see, in one number, whether they'd actually be an upgrade.</div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 col_p, col_a, col_b, col_c = st.columns(4)
 
 with col_p:
-    profile_type = st.radio("Profile type", ["Attacker", "Goalkeeper"], horizontal=True)
+    profile_type = st.selectbox("Profile type", ["Attacker", "Goalkeeper"])
 
 if profile_type == "Attacker":
     sim_df_group = sim_df_attacking
     val_df_group = val_df_latest
     group_stat_labels = [
-        ("Goals /90", "goals_per90"),
-        ("Assists /90", "assists_per90"),
-        ("Goal Contributions /90", "goal_contributions_per90"),
+        ("Goals per 90", "goals_per90"),
+        ("Assists per 90", "assists_per90"),
+        ("Goal Contributions per 90", "goal_contributions_per90"),
     ]
+    group_glossary = ATTACKER_GLOSSARY
 else:
     sim_df_group = get_keeper_similarity_data()
     val_df_group = get_keeper_valuation_data().sort_values("season").drop_duplicates("player", keep="last")
     group_stat_labels = [
         ("Save %", "save_pct"),
         ("Clean Sheet %", "clean_sheet_pct"),
-        ("Goals Against /90", "goals_against_per90"),
+        ("Goals Against per 90", "goals_against_per90"),
     ]
+    group_glossary = KEEPER_GLOSSARY
 
 with col_a:
     team_list = sorted(sim_df_group["team"].unique())
@@ -322,7 +488,7 @@ with col_b:
     if not team_players:
         st.warning(f"No {profile_type.lower()}s found for {selected_team}")
         st.stop()
-    selected_player = st.selectbox("Compare against which player?", team_players)
+    selected_player = st.selectbox("Your current player", team_players)
 
 selected_role = None
 with col_c:
@@ -349,7 +515,7 @@ if selected_player:
         if role_positions is not None:
             filtered = similar_with_value[similar_with_value["position"].isin(role_positions)]
             if filtered.empty:
-                st.info(f"No targets match the {selected_role} role -- showing all targets instead.")
+                st.info(f"No targets match the {selected_role} role, showing all targets instead.")
             else:
                 similar_with_value = filtered
 
@@ -362,7 +528,7 @@ if selected_player:
         <div class="scoreboard">
             <div>
                 <div class="scoreboard-club">{selected_team}</div>
-                <div class="scoreboard-sub">Scouting report — benchmarked against {selected_player}</div>
+                <div class="scoreboard-sub">Scouting report for {selected_player}</div>
             </div>
             <div>
                 <div class="scoreboard-value">{value_display}</div>
@@ -381,58 +547,117 @@ if selected_player:
     ]
     label_to_player = dict(zip(option_labels, similar_with_value["player"]))
 
-    selected_label = st.selectbox("Compare " + selected_player + " against:", option_labels)
+    selected_label = st.selectbox("Pick a target to compare against " + selected_player + ":", option_labels)
     compare_target = label_to_player[selected_label]
 
     reference_row = sim_df_group[sim_df_group["player"] == selected_player].iloc[0]
     reference_value = val_df_group[val_df_group["player"] == selected_player]
-    reference_value_display = f"{reference_value['value_score'].values[0]:.2f}" if not reference_value.empty else "—"
+    reference_score = reference_value["value_score"].values[0] if not reference_value.empty else None
+    reference_value_display = f"{reference_score:.2f}" if reference_score is not None else "—"
 
     target_row = sim_df_group[sim_df_group["player"] == compare_target].iloc[0]
     target_value_row = similar_with_value[similar_with_value["player"] == compare_target].iloc[0]
+    target_score = target_value_row["value_score"]
 
-    reference_stats = [("Age", int(reference_row["age"]))]
+    reference_stats = [("Age", int(reference_row["age"]), "")]
+    target_stats = [("Age", int(target_row["age"]), "")]
+
     for label, col in group_stat_labels:
-        reference_stats.append((label, f"{reference_row[col]:.2f}"))
-    reference_stats.append(("Value score", reference_value_display))
+        ref_val = reference_row[col]
+        tgt_val = target_row[col]
+        higher_wins = HIGHER_IS_BETTER.get(col, True)
 
-    target_stats = [("Age", int(target_row["age"]))]
-    for label, col in group_stat_labels:
-        target_stats.append((label, f"{target_row[col]:.2f}"))
-    target_stats.append(("Value score", f"{target_value_row['value_score']:.2f}"))
+        if higher_wins:
+            ref_wins = ref_val > tgt_val
+            tgt_wins = tgt_val > ref_val
+        else:
+            ref_wins = ref_val < tgt_val
+            tgt_wins = tgt_val < ref_val
 
-    col_left, col_right = st.columns(2)
+        ref_badge = '<span class="edge-badge reference">Edge</span>' if ref_wins else ""
+        tgt_badge = '<span class="edge-badge target">Edge</span>' if tgt_wins else ""
+
+        reference_stats.append((label, f"{ref_val:.2f}", ref_badge))
+        target_stats.append((label, f"{tgt_val:.2f}", tgt_badge))
+
+    col_left, gap, col_right = st.columns([1, 0.08, 1])
     with col_left:
+        st.markdown('<div class="side-label reference">Your Player</div>', unsafe_allow_html=True)
         render_stat_panel(
             title=selected_player,
             subtitle=f"{selected_team} · {reference_row['position']}",
             stats=reference_stats,
+            value_score=reference_value_display,
             variant="reference",
+            glossary=group_glossary,
         )
+    with gap:
+        st.markdown('<div class="vs-badge">VS</div>', unsafe_allow_html=True)
     with col_right:
+        st.markdown('<div class="side-label target">Scouting Target</div>', unsafe_allow_html=True)
         render_stat_panel(
             title=compare_target,
             subtitle=f"{target_row['team']} · {target_row['position']}",
             stats=target_stats,
+            value_score=f"{target_score:.2f}",
             variant="target",
+            glossary=group_glossary,
         )
 
-    profile_label = "attacking" if profile_type == "Attacker" else "goalkeeping"
     st.markdown(
         f"""
-        <div class="similarity-line">
-            Statistical similarity between {selected_player} and {compare_target}:
-            <strong>{target_value_row['similarity_score']:.3f}</strong> (1.0 = identical {profile_label} profile)
+        <div class="legend-row">
+            <div class="legend-item"><span class="edge-badge reference">Edge</span> {selected_player}</div>
+            <div class="legend-item"><span class="edge-badge target">Edge</span> {compare_target}</div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # Verdict always shows a positive magnitude, and the subject named first
+    # carries the direction -- avoids ever printing a negative "higher than"
+    profile_label = "attacking" if profile_type == "Attacker" else "goalkeeping"
+    if reference_score is not None:
+        diff = target_score - reference_score
+        magnitude = abs(diff)
+        if diff > 0:
+            verdict_text = (
+                f'<strong>{compare_target}</strong> scores '
+                f'<span class="delta-up delta-number">+{magnitude:.2f}</span> higher than '
+                f'<strong>{selected_player}</strong> and currently rates as better value.'
+            )
+        elif diff < 0:
+            verdict_text = (
+                f'<strong>{selected_player}</strong> scores '
+                f'<span class="delta-up delta-number">+{magnitude:.2f}</span> higher than '
+                f'<strong>{compare_target}</strong>. Your current player currently rates as better value.'
+            )
+        else:
+            verdict_text = (
+                f'<strong>{selected_player}</strong> and <strong>{compare_target}</strong> '
+                f'rate as equal value on this measure.'
+            )
+    else:
+        verdict_text = f'<strong>{compare_target}</strong> is being compared against <strong>{selected_player}</strong>.'
+
+    st.markdown(
+        f"""
+        <div class="summary-card">
+            <div class="summary-verdict">{verdict_text}</div>
+            <div class="summary-sub">
+                Statistical similarity between {selected_player} and {compare_target}:
+                <strong>{target_value_row['similarity_score']:.3f}</strong> (1.0 = identical {profile_label} profile)
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
     st.subheader("Value comparison")
-    st.caption(f"How {compare_target} stacks up against the other {len(similar_with_value)} targets")
+    st.caption(f"All {len(similar_with_value)} targets vs. {selected_player}'s value score (dashed line)")
 
     bar_colors = [
-        "#172A39" if player == compare_target else "#FC563C"
+        "#152238" if player == compare_target else "#E2583D"
         for player in similar_with_value["player"]
     ]
     fig = go.Figure(go.Bar(
@@ -442,15 +667,28 @@ if selected_player:
         marker_color=bar_colors,
         text=similar_with_value["value_score"].round(2),
         textposition="outside",
-        textfont=dict(color="#172A39"),
+        textfont=dict(color="#152238", family="Space Grotesk", size=13),
     ))
+
+    if reference_score is not None:
+        fig.add_vline(
+            x=reference_score,
+            line_dash="dash",
+            line_color="#152238",
+            line_width=2,
+            annotation_text=f"{selected_player}: {reference_score:.2f}",
+            annotation_position="top",
+            annotation_font=dict(color="#152238", size=12, family="JetBrains Mono"),
+        )
+
     fig.update_layout(
         plot_bgcolor="#FFFFFF",
         paper_bgcolor="#FFFFFF",
-        font_color="#172A39",
-        xaxis=dict(gridcolor="rgba(23,42,57,0.1)", tickfont=dict(color="#6E7575"), title="Value score"),
-        yaxis=dict(autorange="reversed", tickfont=dict(color="#172A39")),
-        margin=dict(l=20, r=40, t=20, b=20),
-        height=max(220, 60 * len(similar_with_value)),
+        font_color="#152238",
+        font_family="IBM Plex Sans",
+        xaxis=dict(gridcolor="rgba(21,34,56,0.08)", tickfont=dict(color="#6B7280"), title="Value score"),
+        yaxis=dict(autorange="reversed", tickfont=dict(color="#152238")),
+        margin=dict(l=20, r=50, t=50, b=20),
+        height=max(260, 64 * len(similar_with_value)),
     )
     st.plotly_chart(fig, use_container_width=True)
