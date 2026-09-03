@@ -8,8 +8,14 @@ PROCESSED_DATA_PATH = Path(__file__).parent.parent / "data" / "processed" / "pla
 
 # These are the stats that define a player's profile
 SIMILARITY_FEATURES = ["age", "goals_per90", "assists_per90", "goal_contributions_per90"]
+KEEPER_SIMILARITY_FEATURES = ["age", "save_pct", "clean_sheet_pct", "goals_against_per90"]
 
 def load_features(path: Path = PROCESSED_DATA_PATH) -> pd.DataFrame:
+    return pd.read_csv(path)
+
+def load_keeper_features(path: Path = None) -> pd.DataFrame:
+    if path is None:
+        path = Path(__file__).parent.parent / "data" / "processed" / "keeper_features.csv"
     return pd.read_csv(path)
 
 # Scaling so no stat dominates the similarity features
@@ -37,7 +43,8 @@ def find_similar_players(df: pd.DataFrame, player_name: str, feature_cols: list[
     # Exclude the player themselves, sort by most similar
     results = df[df["player"] != player_name].sort_values("similarity_score", ascending=False)
     
-    return results[["player", "team", "position", "age", "goals_per90", "assists_per90", "similarity_score"]].head(top_n)
+    output_cols = ["player", "team", "position", "age"] + feature_cols[1:] + ["similarity_score"]
+    return results[output_cols].head(top_n)
 
 if __name__ == "__main__":
     df = load_features()
@@ -46,3 +53,10 @@ if __name__ == "__main__":
     test_player = "Bukayo Saka"
     print(f"Players most similar to {test_player}:")
     print(find_similar_players(df, test_player))
+
+    keeper_df = load_keeper_features()
+    keeper_df, keeper_scaler = normalize_features(keeper_df, feature_cols=KEEPER_SIMILARITY_FEATURES)
+
+    test_keeper = keeper_df["player"].iloc[0]
+    print(f"Testing similarity for: {test_keeper}")
+    print(find_similar_players(keeper_df, test_keeper, feature_cols=KEEPER_SIMILARITY_FEATURES))
