@@ -4,7 +4,7 @@ A tool that can find statistically similar Premier League players to a club's ex
 
 **Live Dashboard** (https://vittacus-football-player-scouting-engine-appdashboard-walnhp.streamlit.app/)
 
-![Dashboard Preview]
+[Dashboard Preview]
 
 <img width="701" height="631" alt="Screenshot 2026-09-03 at 6 00 52 PM" src="https://github.com/user-attachments/assets/12229150-19e7-433a-a5f3-5e256b24af04" />
 <img width="688" height="541" alt="Screenshot 2026-09-03 at 6 01 22 PM" src="https://github.com/user-attachments/assets/e5a7614b-9bb2-4c48-9da7-4e987e102dd1" />
