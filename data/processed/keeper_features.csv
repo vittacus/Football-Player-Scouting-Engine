@@ -1,0 +1,52 @@
+player,team,season,position,age,starts,save_pct,clean_sheet_pct,goals_against_per90
+David Raya,Arsenal,2425,GK,28,38,71.7,34.2,0.89
+Emiliano Martínez,Aston Villa,2425,GK,31,37,67.8,21.6,1.32
+Kepa Arrizabalaga,Bournemouth,2425,GK,29,31,71.3,25.8,1.26
+Mark Flekken,Brentford,2425,GK,31,37,73.4,21.6,1.51
+Bart Verbruggen,Brighton,2425,GK,21,36,58.6,19.4,1.61
+Robert Sánchez,Chelsea,2425,GK,26,32,73.4,31.3,1.06
+Dean Henderson,Crystal Palace,2425,GK,27,38,66.4,28.9,1.34
+Jordan Pickford,Everton,2425,GK,30,38,73.0,31.6,1.16
+Bernd Leno,Fulham,2425,GK,32,38,65.8,13.2,1.42
+Alex Palmer,Ipswich Town,2425,GK,27,13,60.0,0.0,2.31
+Arijanet Muric,Ipswich Town,2425,GK,25,18,68.0,5.6,1.83
+Jakub Stolarczyk,Leicester City,2425,GK,23,10,63.6,20.0,1.6
+Mads Hermansen,Leicester City,2425,GK,24,27,63.8,3.7,2.19
+Alisson,Liverpool,2425,GK,31,28,72.6,35.7,1.04
+Caoimhín Kelleher,Liverpool,2425,GK,25,10,67.6,40.0,1.2
+Ederson Moraes,Manchester City,2425,GK,30,26,67.5,38.5,1.01
+Stefan Ortega,Manchester City,2425,GK,31,12,64.7,25.0,1.47
+André Onana,Manchester Utd,2425,GK,28,34,65.9,26.5,1.29
+Martin Dúbravka,Newcastle,2425,GK,35,10,70.7,50.0,1.2
+Nick Pope,Newcastle,2425,GK,32,28,71.3,28.6,1.25
+Matz Sels,Nottingham,2425,GK,32,38,71.8,34.2,1.21
+Aaron Ramsdale,Southampton,2425,GK,26,30,65.1,10.0,2.2
+Guglielmo Vicario,Tottenham,2425,GK,27,24,64.8,16.7,1.54
+Alphonse Areola,West Ham,2425,GK,31,25,66.1,20.0,1.63
+Łukasz Fabiański,West Ham,2425,GK,39,13,70.4,23.1,1.63
+José Sá,Wolves,2425,GK,31,29,59.0,24.1,1.66
+David Raya,Arsenal,2526,GK,29,37,69.8,51.4,0.7
+Emiliano Martínez,Aston Villa,2526,GK,32,32,70.9,25.0,1.24
+Đorđe Petrović,Bournemouth,2526,GK,25,38,66.9,28.9,1.42
+Caoimhín Kelleher,Brentford,2526,GK,26,37,68.2,27.0,1.32
+Bart Verbruggen,Brighton,2526,GK,22,38,69.5,26.3,1.21
+Martin Dúbravka,Burnley,2526,GK,36,35,64.1,11.4,2.03
+Robert Sánchez,Chelsea,2526,GK,27,35,66.7,25.7,1.45
+Dean Henderson,Crystal Palace,2526,GK,28,37,67.3,29.7,1.38
+Jordan Pickford,Everton,2526,GK,31,38,66.4,28.9,1.32
+Bernd Leno,Fulham,2526,GK,33,38,65.8,23.7,1.34
+Karl Darlow,Leeds United,2526,GK,34,22,70.0,22.7,1.23
+Lucas Perri,Leeds United,2526,GK,27,16,56.7,18.8,1.81
+Alisson,Liverpool,2526,GK,32,26,64.8,30.8,1.19
+Giorgi Mamardashvili,Liverpool,2526,GK,24,10,64.7,20.0,1.87
+Gianluigi Donnarumma,Manchester City,2526,GK,26,34,72.6,44.1,0.85
+Senne Lammens,Manchester Utd,2526,GK,23,32,66.9,25.0,1.22
+Aaron Ramsdale,Newcastle,2526,GK,27,11,58.5,9.1,1.52
+Nick Pope,Newcastle,2526,GK,33,27,70.1,25.9,1.42
+Matz Sels,Nottingham,2526,GK,33,30,70.5,23.3,1.32
+Robin Roefs,Sunderland,2526,GK,22,35,70.1,28.6,1.31
+Guglielmo Vicario,Tottenham,2526,GK,28,31,62.4,22.6,1.61
+Alphonse Areola,West Ham,2526,GK,32,20,67.3,0.0,1.85
+Mads Hermansen,West Ham,2526,GK,25,18,65.9,38.9,1.56
+José Sá,Wolves,2526,GK,32,23,63.7,17.4,1.61
+Sam Johnstone,Wolves,2526,GK,32,12,61.9,0.0,2.0
